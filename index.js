@@ -10,6 +10,10 @@ app.use(bodyParser.json())
 
 app.use("/",router);
 
-app.listen(8686,() => {
+process.on('unhandledRejection', (reason, promise) => {{
+    console.log(reason);
+}});
+
+app.listen(3000,() => {
     console.log("Servidor rodando")
 });
