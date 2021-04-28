@@ -11,7 +11,7 @@ class PasswordToken{
                     user_id: user.id,
                     used: 0,
                     token: token
-                }).table("password-tokens");
+                }).table("passwordtokens");
                 return {status: true, token: token}
             }catch(err){
                 console.log(err);
