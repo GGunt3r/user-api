@@ -25,10 +25,9 @@ class UserController{
     }
 
     async create(req, res){
-        console.log(req.body);
+        
         var {email, nome, password} = req.body;
-
-        if(email == undefined){
+        if(email == undefined || email == '' || email == ' '){
             res.status(400);
             res.json({err: "O e-mail é inválido ou não foi encontrado, tente novamente."});
             return;
