@@ -4,6 +4,11 @@
         <hr>
         <div class="columns is-centered">
             <div class="column is-half">
+                <div v-if="error != undefined">
+                    <div class="notification is-danger">
+                        {{error}}
+                    </div>
+                </div>
                 <p>Nome</p>
                 <input type="text" placeholder="Nome do usuário" class="input" v-model="nome">
                 <p>Email</p>
@@ -24,7 +29,8 @@ export default{
         return {
             nome: '',
             password: '0',
-            email: ''
+            email: '',
+            error: undefined
         }
     },
     methods: {
@@ -35,9 +41,10 @@ export default{
                 email: this.email
             }).then(res => {
                 console.log(res);
+                this.$router.push({name: 'Home'})
             }).catch(err => {
                 var msgErro = err.response.data.err;
-                console.log(msgErro);
+                this.error = msgErro;
             })
         }
     }
