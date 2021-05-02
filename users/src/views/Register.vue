@@ -41,7 +41,7 @@ export default{
                 email: this.email
             }).then(res => {
                 console.log(res);
-                this.$router.push({name: 'complet'})
+                this.$router.push({name: 'Complet'})
             }).catch(err => {
                 var msgErro = err.response.data.err;
                 this.error = msgErro;
