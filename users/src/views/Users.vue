@@ -19,7 +19,8 @@
                 <td>{{user.nome}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.role | processRole}}</td>
-                <td><button class="button is-dark">Editar</button> <button class="button is-black" @click="showModalUser(user.id)">Deletar</button></td>
+                <td>
+                    <router-link :to="{name: 'UserEdit', params: {id: user.id}}"><button class="button is-dark">Editar</button></router-link> <button class="button is-black" @click="showModalUser(user.id)">Deletar</button></td>
             </tr>
         </tbody>
         </table>
