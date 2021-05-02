@@ -51,12 +51,20 @@ export default{
     },
     methods: {
         update(){
-            axios.post('http://localhost:3000/user', {
+
+            var req = {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
+            }
+
+            axios.put('http://localhost:3000/user', {
                 nome: this.nome,
-                email: this.email
-            }).then(res => {
+                email: this.email,
+                id: this.id
+            }, req).then(res => {
                 console.log(res);
-                this.$router.push({name: 'Complet'})
+                this.$router.push({name: 'Users'})
             }).catch(err => {
                 var msgErro = err.response.data.err;
                 this.error = msgErro;
