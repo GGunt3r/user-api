@@ -19,10 +19,34 @@
                 <td>{{user.nome}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.role | processRole}}</td>
-                <td><button class="button is-dark">Editar</button> <button class="button is-black">Deletar</button></td>
+                <td><button class="button is-dark">Editar</button> <button class="button is-black" @click="showModalUser(user.id)">Deletar</button></td>
             </tr>
         </tbody>
         </table>
+        
+        <div :class="{modal: true, 'is-active': showModal}">
+            <div class="modal-background">
+                <div class="modal-content">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                            Você quer realmente deletar este usuário ?
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <p>Não sei</p>
+                            </div>
+                        </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item" @click="hideModal()">Cancelar</a>
+                                <a href="#" class="card-footer-item">Confirmar</a>
+                            </footer>
+                        </div>
+                </div>
+                <button class="modal-close is-large" aria-label="close" @click="hideModal()"></button>
+            </div>
+        </div>
     </div>
 </div> 
 </template>
@@ -44,9 +68,19 @@ export default {
             console.log(err);
         })
     },
-    date(){
+    data(){
         return{
-            users: []
+            users: [],
+            showModal: false
+        }
+    },
+    methods: {
+        hideModal(){
+            this.showModal = false;
+        },
+        showModalUser(id){
+            console.log('ID do usuário: '+ id);
+            this.showModal = true;
         }
     },
     filters: {
